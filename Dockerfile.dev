@@ -1,0 +1,34 @@
+# Use a slim Debian-based Python image
+FROM python:3.11-slim
+
+ARG DUID
+ARG GID
+
+
+RUN groupadd -g ${GID} devgroup && \
+    useradd -m -u ${DUID} -g devgroup devuser
+
+# Set environment variables for development
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+COPY . /app
+
+RUN chown -R "$DUID:$GID" /app
+
+# Copy the application code
+# Switch to this user
+USER devuser
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements_dev.txt
+
+#RUN chmod +x ./src/dev.init.app.sh
+
+# Expose FastAPI's default port
+EXPOSE 8000
+
+
+

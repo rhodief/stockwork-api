@@ -1,0 +1,96 @@
+[
+  {
+    "table_name": "planned_drillhole",
+    "columns": [
+      { "name": "id", "type": "text", "primary_key": true, "comment": "Planned drillhole ID" },
+      { "name": "x_prog", "type": "float", "comment": "Planned X coordinate" },
+      { "name": "y_prog", "type": "float", "comment": "Planned Y coordinate" },
+      { "name": "azimuth", "type": "float", "comment": "Planned azimuth" },
+      { "name": "dip", "type": "float", "comment": "Planned dip angle" },
+      { "name": "target_depth", "type": "float", "comment": "Planned depth" },
+      { "name": "status", "type": "text", "comment": "Planned status" },
+      { "name": "notes", "type": "text", "comment": "Planner notes or observations" }
+    ]
+  },
+  {
+    "table_name": "drillhole",
+    "columns": [
+      { "name": "hole_id", "type": "text", "primary_key": true, "comment": "Drillhole ID" },
+      { "name": "project", "type": "text", "comment": "Project name" },
+      { "name": "target", "type": "text", "comment": "Target objective" },
+      { "name": "purpose", "type": "text", "comment": "Purpose of drilling" },
+      { "name": "survey_method", "type": "text", "comment": "Survey method used" },
+      { "name": "start_date", "type": "date", "comment": "Drilling start date" },
+      { "name": "end_date", "type": "date", "comment": "Drilling end date" },
+      { "name": "final_depth", "type": "float", "comment": "Final depth reached" },
+      { "name": "company_id", "type": "integer", "foreign_key": "company.id", "comment": "Drilling company" },
+      { "name": "coordinate_id", "type": "integer", "foreign_key": "coordinate.id", "comment": "Coordinate reference" }
+    ]
+  },
+  {
+    "table_name": "survey",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "hole_id", "type": "text", "foreign_key": "drillhole.hole_id" },
+      { "name": "depth", "type": "float" },
+      { "name": "azimuth", "type": "float" },
+      { "name": "dip", "type": "float" },
+      { "name": "method", "type": "text" }
+    ]
+  },
+  {
+    "table_name": "sample",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "hole_id", "type": "text", "foreign_key": "drillhole.hole_id" },
+      { "name": "from_depth", "type": "float" },
+      { "name": "to_depth", "type": "float" },
+      { "name": "length", "type": "float" },
+      { "name": "sample_type_id", "type": "integer", "foreign_key": "sample_type.id" }
+    ]
+  },
+  {
+    "table_name": "sample_type",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "name", "type": "text", "unique": true }
+    ]
+  },
+  {
+    "table_name": "geology",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "hole_id", "type": "text", "foreign_key": "drillhole.hole_id" },
+      { "name": "from_depth", "type": "float" },
+      { "name": "to_depth", "type": "float" },
+      { "name": "lithology", "type": "text" },
+      { "name": "weathering", "type": "text" },
+      { "name": "mineralogy", "type": "text" },
+      { "name": "geologist_id", "type": "integer", "foreign_key": "geologist.id" }
+    ]
+  },
+  {
+    "table_name": "geologist",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "name", "type": "text", "unique": true }
+    ]
+  },
+  {
+    "table_name": "company",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "name", "type": "text", "unique": true }
+    ]
+  },
+  {
+    "table_name": "coordinate",
+    "columns": [
+      { "name": "id", "type": "integer", "primary_key": true },
+      { "name": "coord_type", "type": "text", "comment": "Coordinate type (UTM, GPS, etc.)" },
+      { "name": "utm_northing", "type": "float" },
+      { "name": "utm_easting", "type": "float" },
+      { "name": "geom", "type": "geometry(Point, 31982)", "required": true, "comment": "PostGIS geometry" }
+    ]
+  }
+]
