@@ -5,6 +5,7 @@ import os
 
 connector = SQLAlchemyConnector(db_url=os.environ.get('DATABASE_URL', ''))
 tables = build_from_json("stock_parser/config/base_model.json")
-sorted_tables = sort_tables_by_dependency(tables)
+sorted_tables = sort_tables_by_dependency(tables, ignore_missing_refs=['spatial_ref_sys.srid'])
 for table in sorted_tables:
     connector.create_table(table)
+    #connector.drop_table(table)
