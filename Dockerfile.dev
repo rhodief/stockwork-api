@@ -4,6 +4,12 @@ FROM python:3.11-slim
 ARG DUID
 ARG GID
 
+# Install git and clean up cache
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 RUN groupadd -g ${GID} devgroup && \
     useradd -m -u ${DUID} -g devgroup devuser
