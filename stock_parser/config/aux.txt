@@ -1,0 +1,26 @@
+planned_boreholes (Plano de Sondagem)
+    status: planejado, concluído, liberado, cancelado
+    coordinates: [583388,8474757] UTM_LESTE UTM_NORTE - UTM Zone 23S ???
+
+headers
+    ALVO: [ALVO, CCMN] ? (está em amarelo, é preferência do cliente??)
+    PROPOSITO: EXP
+    Fazenda (amarelo) - essa informação já está em outro lugar, talvez em ANM ?
+
+    drilling_type (tipo de Sondagem): [AC, DD, TH, RC] - table drilling_types
+    Empresa sondagem [várias] drilling_contractors
+    Equipamento Sondagem drilling_rig
+    Campanha: [AC_2022_01, DD_2022_01....] campaing
+    Geologo: []                             geologist - vinculada em campaing ou boreholes? 
+    Método de levantamento                 coordinates.source
+
+geology
+    litologia: [SR, FLD, GLI, MAF, CC...] OK
+    inteperismo: [SOL, ALI, ISAL] - boreholes_layers.alteration ok?
+    granulometria: [A_AF, A, AF_AM, S...] grain_sizes OK
+    mineralogia: [MAGNETITA, ARGILOMINERAIS, FLOGOPITA...] n:n???
+    REAC_MOLIBDATO: [AUS, FRA, MOD] analyte + assay_method
+    cor_reacao: [AM, BR... ] campo separado [estender tabela... ]
+
+
+

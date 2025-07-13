@@ -1,0 +1,1502 @@
+[
+    {
+        "table_name": "projects",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique project identifier"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Project name"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Short project code"
+            },
+            {
+                "name": "client",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Client or company responsible"
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Project description"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'active'",
+                "comment": "Project current status"
+            }
+        ]
+    },
+    {
+        "table_name": "geologists",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique ID for geologist"
+            },
+            {
+                "name": "full_name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Full name of the geologist"
+            },
+            {
+                "name": "crea_number",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Professional CREA registration number"
+            },
+            {
+                "name": "email",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Email address"
+            },
+            {
+                "name": "phone",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Contact phone number"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes or responsibilities"
+            }
+        ]
+    },
+    {
+        "table_name": "drilling_programs",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique drilling program identifier"
+            },
+            {
+                "name": "project_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "projects.id",
+                "default": null,
+                "comment": "Related project"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Program code"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Program name"
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Program details"
+            },
+            {
+                "name": "objective",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Program objective"
+            },
+            {
+                "name": "start_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned start date"
+            },
+            {
+                "name": "end_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned end date"
+            },
+            {
+                "name": "contractor",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "External contractor"
+            },
+            {
+                "name": "supervisor",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Responsible geologist"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'planned'",
+                "comment": "Current status"
+            }
+        ]
+    },
+    {
+        "table_name": "planned_boreholes",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique identifier of planned borehole"
+            },
+            {
+                "name": "drilling_program_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "drilling_programs.id",
+                "default": null,
+                "comment": "Associated drilling program"
+            },
+            {
+                "name": "planned_code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned borehole code"
+            },
+            {
+                "name": "planned_coordinates_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "coordinates.id",
+                "default": null,
+                "comment": "Planned Coordinates"
+            },
+            {
+                "name": "planned_azimuth",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned azimuth"
+            },
+            {
+                "name": "planned_dip",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned dip"
+            },
+            {
+                "name": "planned_depth",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Planned depth in meters"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'planned'",
+                "comment": "Planned status"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Notes or comments"
+            }
+        ]
+    },
+    {
+        "table_name": "mining_titles",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique mining title ID"
+            },
+            {
+                "name": "process_number",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "ANM process number"
+            },
+            {
+                "name": "title_type",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Title type"
+            },
+            {
+                "name": "title_number",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Official title number"
+            },
+            {
+                "name": "holder",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Title holder"
+            },
+            {
+                "name": "substance",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Target mineral or substance"
+            },
+            {
+                "name": "state",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "State (UF)"
+            },
+            {
+                "name": "municipality",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Municipality"
+            },
+            {
+                "name": "area_ha",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Area in hectares"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'active'",
+                "comment": "Title status"
+            },
+            {
+                "name": "issue_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Date of issue"
+            },
+            {
+                "name": "expiration_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Date of expiration"
+            }
+        ]
+    },
+    {
+        "table_name": "drilling_types",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique ID for drilling type"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Short code (e.g., DD, RC)"
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Full description"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            }
+        ]
+    },
+    {
+        "table_name": "boreholes",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique identifier for borehole"
+            },
+            {
+                "name": "campaign_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "campaigns.id",
+                "default": null,
+                "comment": "Related campaign"
+            },
+            {
+                "name": "planned_borehole_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "planned_boreholes.id",
+                "default": null,
+                "comment": "Link to planned borehole"
+            },
+            {
+                "name": "hole_code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Borehole code"
+            },
+            {
+                "name": "drilling_type",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "drilling_types.id",
+                "default": null,
+                "comment": "Type of drilling"
+            },
+            {
+                "name": "final_depth",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Achieved depth"
+            },
+            {
+                "name": "azimuth",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Execution azimuth"
+            },
+            {
+                "name": "dip",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Execution dip"
+            },
+            {
+                "name": "start_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Start of execution"
+            },
+            {
+                "name": "end_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "End of execution"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'executed'",
+                "comment": "Execution status"
+            },
+            {
+                "name": "diameter",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Drilling diameter"
+            },
+            {
+                "name": "rig_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "drilling_rigs.id",
+                "default": null,
+                "comment": "Drilling rig used"
+            },
+            {
+                "name": "contractor_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "drilling_contractors.id",
+                "default": null,
+                "comment": "Drilling contractor"
+            },
+            {
+                "name": "collar_coordinates_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "coordinates.id",
+                "default": null,
+                "comment": "Collar coordinate reference"
+            },
+            {
+                "name": "comments",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "General comments"
+            }
+        ]
+    },
+    {
+        "table_name": "lithologies",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Lithology ID"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Lithology name"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Short code"
+            },
+            {
+                "name": "color_hex",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Color in HEX"
+            },
+            {
+                "name": "visual_pattern",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Visual pattern or hatch"
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Lithology description"
+            },
+            {
+                "name": "rock_type",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Rock type"
+            }
+        ]
+    },
+    {
+        "table_name": "grain_sizes",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "required": true,
+                "unique": true,
+                "comment": "Code like A_AF, AF_AM..."
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "required": false,
+                "comment": "Description (e.g. Areia fina a muito fina)"
+            }
+        ]
+    },
+    {
+        "table_name": "borehole_layers",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique ID"
+            },
+            {
+                "name": "borehole_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "boreholes.id",
+                "default": null,
+                "comment": "Linked borehole"
+            },
+            {
+                "name": "depth_from",
+                "type": "float",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Layer start depth"
+            },
+            {
+                "name": "depth_to",
+                "type": "float",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Layer end depth"
+            },
+            {
+                "name": "lithology_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "lithologies.id",
+                "default": null,
+                "comment": "Lithology"
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            },
+            {
+                "name": "alteration",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Type of alteration"
+            },
+            {
+                "name": "hardness",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Rock hardness"
+            },
+            {
+                "name": "fracturing",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Fracture degree"
+            },
+            {
+                "name": "visual_style",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Visual pattern or style"
+            },
+            {
+                "name": "grain_size_id",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "grain_sizes.id",
+                "default": null,
+                "comment": "Visual pattern or style"
+            }
+        ]
+    },
+    {
+        "table_name": "samples",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Sample ID"
+            },
+            {
+                "name": "borehole_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "boreholes.id",
+                "default": null,
+                "comment": "Associated borehole"
+            },
+            {
+                "name": "depth_from",
+                "type": "float",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Sample start depth"
+            },
+            {
+                "name": "depth_to",
+                "type": "float",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Sample end depth"
+            },
+            {
+                "name": "sample_code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Sample unique code"
+            },
+            {
+                "name": "lithology_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "lithologies.id",
+                "default": null,
+                "comment": "Dominant lithology"
+            },
+            {
+                "name": "structure",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Structural description"
+            },
+            {
+                "name": "sample_type",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Type of sample (core, RC, etc.)"
+            },
+            {
+                "name": "core_box",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Core box identifier"
+            }
+        ]
+    },
+    {
+        "table_name": "analytes",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Analyte ID"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Short name (e.g., Fe)"
+            },
+            {
+                "name": "full_name",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Full name (e.g., Iron)"
+            },
+            {
+                "name": "default_unit",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Measurement unit"
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Analyte type (element, oxide, etc.)"
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "true",
+                "comment": "If analyte is active"
+            }
+        ]
+    },
+    {
+        "table_name": "assay_methods",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Assay method ID"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Method code"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Full method name"
+            },
+            {
+                "name": "preparation",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Preparation technique"
+            },
+            {
+                "name": "detection_limit",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Minimum detection limit"
+            },
+            {
+                "name": "method_type",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Method type"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "true",
+                "comment": "Whether method is in use"
+            }
+        ]
+    },
+    {
+        "table_name": "assays",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Assay record ID"
+            },
+            {
+                "name": "sample_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "samples.id",
+                "default": null,
+                "comment": "Sample reference"
+            },
+            {
+                "name": "analyte_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "analytes.id",
+                "default": null,
+                "comment": "Analyte being measured"
+            },
+            {
+                "name": "method_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "assay_methods.id",
+                "default": null,
+                "comment": "Method used"
+            },
+            {
+                "name": "value",
+                "type": "float",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Assay result value"
+            },
+            {
+                "name": "unit",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unit of result"
+            },
+            {
+                "name": "laboratory",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Lab name"
+            },
+            {
+                "name": "result_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Date of result"
+            }
+        ]
+    },
+    {
+        "table_name": "campaigns",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Campaign unique ID"
+            },
+            {
+                "name": "project_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "projects.id",
+                "default": null,
+                "comment": "Associated project"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Campaign name"
+            },
+            {
+                "name": "start_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Campaign start date"
+            },
+            {
+                "name": "end_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Campaign end date"
+            },
+            {
+                "name": "supervisor",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Person responsible for campaign"
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": "'active'",
+                "comment": "Campaign status"
+            }
+        ]
+    },
+    {
+        "table_name": "coordinates",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique coordinate point identifier"
+            },
+            {
+                "name": "geom",
+                "type": "geometry(Point, 31982)",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Geometry point with SRID"
+            },
+            {
+                "name": "srid",
+                "type": "integer",
+                "primary_key": false,
+                "required": true,
+                "unique": false,
+                "foreign_key": "spatial_ref_sys.srid",
+                "default": "31982",
+                "comment": "EPSG spatial reference ID"
+            },
+            {
+                "name": "elevation",
+                "type": "float",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Elevation in meters"
+            },
+            {
+                "name": "source",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Survey method used (e.g., GPS, RTK)"
+            },
+            {
+                "name": "acquisition_date",
+                "type": "date",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Date of coordinate acquisition"
+            },
+            {
+                "name": "remarks",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            }
+        ]
+    },
+    {
+        "table_name": "drilling_contractors",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Unique contractor ID"
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Contractor name"
+            },
+            {
+                "name": "contact",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Contact person"
+            },
+            {
+                "name": "phone",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Phone number"
+            },
+            {
+                "name": "email",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Email address"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            }
+        ]
+    },
+    {
+        "table_name": "drilling_rigs",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "primary_key": true,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Drilling rig ID"
+            },
+            {
+                "name": "code",
+                "type": "text",
+                "primary_key": false,
+                "required": true,
+                "unique": true,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Rig code"
+            },
+            {
+                "name": "model",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Model"
+            },
+            {
+                "name": "contractor_id",
+                "type": "integer",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": "drilling_contractors.id",
+                "default": null,
+                "comment": "Owning contractor"
+            },
+            {
+                "name": "capacity",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Maximum depth capacity"
+            },
+            {
+                "name": "notes",
+                "type": "text",
+                "primary_key": false,
+                "required": false,
+                "unique": false,
+                "foreign_key": null,
+                "default": null,
+                "comment": "Additional notes"
+            }
+        ]
+    }
+]
