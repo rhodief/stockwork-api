@@ -885,7 +885,7 @@
                 "unique": false,
                 "foreign_key": "grain_sizes.id",
                 "default": null,
-                "comment": "Visual pattern or style"
+                "comment": "granulometria"
             }
         ]
     },

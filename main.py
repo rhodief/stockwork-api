@@ -11,7 +11,7 @@ def drop_tables():
     drop_tables_from_json("stock_parser/config/base_model.json", connector)
 
 if __name__ == '__main__':
-    #drop_tables()
-    create_tables()    
+    drop_tables()
+    #create_tables()    
     
     

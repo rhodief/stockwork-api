@@ -1,1 +1,4 @@
 *.env
+poc/campo_data
+poc/lab
+poc/output.png
