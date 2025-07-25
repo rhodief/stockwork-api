@@ -1,0 +1,76 @@
+services:
+  stockwork_api:
+    build:
+      context: ./stockwork-api
+      dockerfile: Dockerfile.dev
+      args:
+        DUID: ${DUID}
+        GID: ${GID}
+    container_name: stockwork_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./stockwork-api:/app
+    env_file: ./stockwork-api/.env  
+    depends_on:
+      - postgis      
+      - s3_stockwork
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - stockwork_network
+
+  postgis:
+    image: postgis/postgis:latest
+    environment:
+      POSTGRES_USER: geo_user
+      POSTGRES_PASSWORD: geo_pass
+      POSTGRES_DB: geo_db
+    ports:
+      - "5432:5432"
+    networks:
+      - stockwork_network
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+
+  adminer:
+    container_name: stockwork_adminer
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - stockwork_network
+
+  s3_stockwork:
+    image: minio/minio:latest
+    container_name: s3_stockwork
+    environment:
+      - MINIO_ROOT_USER=secret_access_key
+      - MINIO_ROOT_PASSWORD=secret_key
+    command: server /data
+    ports:
+      - "9000:9000"
+    volumes:
+      - s3_stockwork:/data
+    networks:
+      - stockwork_network
+
+  notebook:
+    build:
+      context: ./notebook
+    volumes:
+      - ./notebook:/home/jovyan/notebooks
+    environment:
+      - DATABASE_URL=postgresql://geo_user:geo_pass@postgres:5432/geo_db
+    ports:
+      - "8888:8888"
+    networks:
+      - stockwork_network
+    depends_on:
+      - postgis
+
+volumes:
+  postgis_data:
+  s3_stockwork:
+
+networks:
+  stockwork_network:
