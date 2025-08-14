@@ -1,5 +1,16 @@
 # Stockwork
 
+## Application Design
+
+### Main Modules:
+- **Projects:** setup each project with its own schema and futher definitions
+    - *view*: project details. Each aspect of the project in tabs. Here we can submit data sheets. 
+    - *config*: All stuff for projects configs. 
+- **Data Sheets:** Pages for the last datasheets submited and its validations and flags for pipeline ready (see if it's need)
+- **Sites mapping:** The map and relevant data to see it in the map across all projects. It must also stay in the projet tab for "mapping". 
+- **Configs:** App configuration as a whole. 
+
+
 # Usage Example
 
 1. JSON-based Table Generation
